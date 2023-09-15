@@ -1,15 +1,30 @@
-class SliderHome{
-  final String name;
-  final String rating;
-  final List slider;
 
-  SliderHome({required this.name, required this.rating, required this.slider});
+
+class SliderHome{
+  final String hotelName;
+  final String rating;
+  final String item;
+  final String amount;
+  final String time;
+  final String cate;
+  final String km;
+  final List slider;
+  final String offer;
+  final bool offerStatus;
+
+  SliderHome({required this.offerStatus, this.offer="", required this.item, required this.amount, required this.time, required this.km, required this.hotelName, required this.rating, required this.slider, required this.cate});
 }
 
 List<SliderHome> sliderHome=[
   SliderHome(
-      name: "Shawarma",
+      hotelName: "Roots Restaurant",
       rating: "4.6",
+      item: "Shawarma",
+      amount: "120",
+      cate: "fast Food",
+      time: "20-30 min",
+      offerStatus: false,
+      km: "6 km",
       slider: [
         "https://images.unsplash.com/photo-1642783944285-b33b18ef6c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c2hhd2FybWElMjBmb29kfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
         "https://images.unsplash.com/photo-1644615988562-31d2e98fb6b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHNoYXdhcm1hJTIwZm9vZHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
@@ -18,8 +33,15 @@ List<SliderHome> sliderHome=[
       ]
   ),
   SliderHome(
-      name: "fried chicken",
+      hotelName: "Qahwa Restaurant",
       rating: "4.8",
+      item: "Fried chiken",
+      cate: "fast Food",
+      km: "4 km",
+      amount: "300",
+      offerStatus: true,
+      offer: "30% OFF up to ₹75",
+      time: "45-50 min",
       slider: [
         "https://images.unsplash.com/photo-1580217593608-61931cefc821?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y2hpY2tlbiUyMGZyeXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
         "https://images.unsplash.com/photo-1623653387945-2fd25214f8fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGNoaWNrZW4lMjBmcnl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
@@ -28,7 +50,13 @@ List<SliderHome> sliderHome=[
   ),
 
   SliderHome(
-      name: "Burger",
+      hotelName: "Chicking",
+      item: "Burger",
+      time: "10-30 min",
+      cate: "fast Food",
+      offerStatus: false,
+      amount: "230",
+      km: "4 km",
       rating: "4.0",
       slider: [
         "https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YnVyZ2VyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",

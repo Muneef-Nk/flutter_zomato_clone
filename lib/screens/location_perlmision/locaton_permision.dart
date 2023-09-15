@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:zomato_clone/home_root.dart';
+import 'package:zomato_clone/bottomNav.dart';
 import 'package:zomato_clone/utils/constants.dart';
 
 class LocationPermission extends StatelessWidget {
@@ -32,7 +32,7 @@ class LocationPermission extends StatelessWidget {
                      actions: [
                        TextButton(onPressed: (){
                          Navigator.of(context).pop();
-                       }, child: Text("GO TO SETTINGS"))
+                       }, child: Text("GO TO SETTINGS", style: TextStyle(color: primary),))
                      ],
                    );
                  });
@@ -57,7 +57,7 @@ class LocationPermission extends StatelessWidget {
              SizedBox(height: 20,),
              InkWell(
                onTap: (){
-                 Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>HomeRoot()));
+                 Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>BottomNav()));
                },
                child: Container(
                  width: MediaQuery.of(context).size.width*0.95,
