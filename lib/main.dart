@@ -1,11 +1,17 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:zomato_clone/bottomNav.dart';
+import 'package:provider/provider.dart';
+import 'package:zomato_clone/provider/foota_item_count.dart';
 import 'package:zomato_clone/screens/home_screen/home_screen.dart';
+import 'package:zomato_clone/screens/restaurant/restaurant_screen.dart';
 import 'package:zomato_clone/screens/splash_screen/splash_screen.dart';
 
-
-void main(){
-  runApp(ZomatoClone());
+void main() {
+  runApp(
+    DevicePreview(
+      builder: (context) => ZomatoClone(), // Wrap your app
+    ),
+  );
 }
 
 class ZomatoClone extends StatelessWidget {
@@ -13,14 +19,17 @@ class ZomatoClone extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Color(0xfffd3249),
-        fontFamily: 'LexendDeca'
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context)=> ItemCount()),
+      ],
+      child: MaterialApp(
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
+        theme: ThemeData(primaryColor: Color(0xfffd3249), fontFamily: 'LexendDeca'),
+        debugShowCheckedModeBanner: false,
+        home: HomeScreen(),
       ),
-      debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
     );
   }
 }
-

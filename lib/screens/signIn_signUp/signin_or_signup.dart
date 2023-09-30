@@ -1,8 +1,9 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:zomato_clone/screens/select_country/select_country.dart';
+import 'package:zomato_clone/screens/signIn_signUp/widgets/social_container.dart';
 
-import '../../widgets/show_language_bottom_sheet.dart';
+import '../../utils/constants.dart';
 import '../../widgets/social_container.dart';
 import '../location_perlmision/locaton_permision.dart';
 import '../otp_screen/otp_screen.dart';
@@ -21,6 +22,8 @@ class _SignIn_SignUpState extends State<SignIn_SignUp> {
     _numberController.dispose();
     super.dispose();
   }
+
+  int _languageValue = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +59,112 @@ class _SignIn_SignUpState extends State<SignIn_SignUp> {
                 left: 20,
                 child: InkWell(
                   onTap: () {
-                    showModalBottomSheetLanguage(context);
+                    showModalBottomSheet(
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        context: context,
+                        builder: (context) {
+                          return SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.black.withOpacity(0.6),
+                                  ),
+                                  child: IconButton(
+                                    color: Colors.white,
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    icon: Icon(Icons.close),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Container(
+                                  width: double.infinity,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(20),
+                                          topRight: Radius.circular(20))),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 20, top: 20),
+                                    child: Text(
+                                      "Select Language",
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  height: 400,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                  ),
+                                  child: ListView(
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.all(10),
+                                        height: 95,
+                                        decoration: BoxDecoration(
+                                            color: Color(0xfff3f4f8),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Center(
+                                          child: RadioListTile(
+                                            value: 1,
+                                            groupValue: _languageValue,
+                                            title: Text("English"),
+                                            onChanged: (value) {
+                                              setState(() {
+                                                _languageValue = value!;
+                                              });
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {},
+                                  child: Ink(
+                                    padding: EdgeInsets.only(
+                                        left: 15,
+                                        right: 15,
+                                        top: 2,
+                                        bottom: 15),
+                                    width: double.infinity,
+                                    height: 80,
+                                    color: Colors.white,
+                                    child: Container(
+                                      width: 40,
+                                      height: 20,
+                                      decoration: BoxDecoration(
+                                          color: primary,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                          child: Text(
+                                        "Select",
+                                        style: TextStyle(
+                                            fontSize: 20, color: Colors.white),
+                                      )),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          );
+                        });
                   },
                   child: BlurryContainer(
                     color: Colors.white.withOpacity(0.19),
@@ -76,9 +184,10 @@ class _SignIn_SignUpState extends State<SignIn_SignUp> {
                 top: 40,
                 right: 20,
                 child: InkWell(
-                  onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>LocationPermission()));
-                    },
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => LocationPermission()));
+                  },
                   child: BlurryContainer(
                     color: Colors.white.withOpacity(0.19),
                     blur: 8,
@@ -127,6 +236,7 @@ class _SignIn_SignUpState extends State<SignIn_SignUp> {
                             border: Border.all(
                                 width: 1, color: Colors.grey.withOpacity(.5)),
                             borderRadius: BorderRadius.circular(10)),
+                        child: Icon(Icons.arrow_drop_down),
                       ),
                     ),
                     SizedBox(
@@ -167,7 +277,8 @@ class _SignIn_SignUpState extends State<SignIn_SignUp> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=> OTPScreen()));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => OTPScreen()));
                     // if (_numberKey.currentState!.validate()) {
                     //   // Scaffold.of(context).showSnackBar()
                     //   print('not valid');
@@ -206,56 +317,59 @@ class _SignIn_SignUpState extends State<SignIn_SignUp> {
                           builder: (context) {
                             return Container(
                               height: 250,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      print("clicked");
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                          color: Colors.black.withOpacity(0.8),
-                                          shape: BoxShape.circle),
-                                      child: Icon(
-                                        Icons.close,
-                                        color: Colors.white,
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        print("clicked");
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Container(
+                                        width: 50,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                            color:
+                                                Colors.black.withOpacity(0.8),
+                                            shape: BoxShape.circle),
+                                        child: Icon(
+                                          Icons.close,
+                                          color: Colors.white,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Container(
-                                    width: double.infinity,
-                                    height: 180,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(20),
-                                            topRight: Radius.circular(20))),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        socialContainerBSheet(
-                                            context: context,
-                                            icon: "assets/icons/facebook.png",
-                                            text: "Continue with Facebook"),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                        socialContainerBSheet(
-                                            context: context,
-                                            icon: "assets/icons/email.png",
-                                            text: "Continue with Email")
-                                      ],
+                                    SizedBox(
+                                      height: 20,
                                     ),
-                                  ),
-                                ],
+                                    Container(
+                                      width: double.infinity,
+                                      height: 180,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              topRight: Radius.circular(20))),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          socialContainerBSheet(
+                                              context: context,
+                                              icon: "assets/icons/facebook.png",
+                                              text: "Continue with Facebook"),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
+                                          socialContainerBSheet(
+                                              context: context,
+                                              icon: "assets/icons/email.png",
+                                              text: "Continue with Email")
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             );
                           },
@@ -278,36 +392,5 @@ class _SignIn_SignUpState extends State<SignIn_SignUp> {
         ],
       ),
     ));
-  }
-
-
-
-  Widget socialContainerBSheet(
-      {required BuildContext context,
-      required String icon,
-      required String text}) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.85,
-      height: 50,
-      decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey.shade300),
-          borderRadius: BorderRadius.circular(15)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset(icon),
-          ),
-          SizedBox(
-            width: 20,
-          ),
-          Text(
-            text,
-            style: TextStyle(color: Colors.grey[700]),
-          )
-        ],
-      ),
-    );
   }
 }

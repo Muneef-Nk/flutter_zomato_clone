@@ -6,13 +6,13 @@ class SliderHome{
   final String item;
   final String amount;
   final String time;
-  final String cate;
+  final String cato;
   final String km;
   final List slider;
   final String offer;
   final bool offerStatus;
 
-  SliderHome({required this.offerStatus, this.offer="", required this.item, required this.amount, required this.time, required this.km, required this.hotelName, required this.rating, required this.slider, required this.cate});
+  SliderHome({required this.offerStatus, this.offer="", required this.item, required this.amount, required this.time, required this.km, required this.hotelName, required this.rating, required this.slider, required this.cato});
 }
 
 List<SliderHome> sliderHome=[
@@ -21,7 +21,7 @@ List<SliderHome> sliderHome=[
       rating: "4.6",
       item: "Shawarma",
       amount: "120",
-      cate: "fast Food",
+      cato: "fast Food",
       time: "20-30 min",
       offerStatus: false,
       km: "6 km",
@@ -36,7 +36,7 @@ List<SliderHome> sliderHome=[
       hotelName: "Qahwa Restaurant",
       rating: "4.8",
       item: "Fried chiken",
-      cate: "fast Food",
+      cato: "fast Food",
       km: "4 km",
       amount: "300",
       offerStatus: true,
@@ -53,7 +53,7 @@ List<SliderHome> sliderHome=[
       hotelName: "Chicking",
       item: "Burger",
       time: "10-30 min",
-      cate: "fast Food",
+      cato: "fast Food",
       offerStatus: false,
       amount: "230",
       km: "4 km",
