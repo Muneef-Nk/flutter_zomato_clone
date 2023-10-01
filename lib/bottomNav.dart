@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:zomato_clone/screens/dining/dining_page.dart';
 import 'package:zomato_clone/screens/home_screen/home_screen.dart';
+import 'package:zomato_clone/screens/money/money_page.dart';
 import 'package:zomato_clone/utils/constants.dart';
 import 'package:zomato_clone/widgets/bottomSelectedContainer.dart';
+
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
@@ -11,11 +14,11 @@ class BottomNav extends StatefulWidget {
 }
 
 class _BottomNavState extends State<BottomNav> {
-  List<Widget> screens = [
-    HomeScreen(),
-    Center(child: Text("1")),
-    Center(child: Text("2")),
-  ];
+  // List<Widget> screens = [
+  //   HomeScreen(),
+  //   MoneyScreen(),
+  //   Center(child: Text("2")),
+  // ];
 
   int currentTab = 0;
   final PageStorageBucket bucket = PageStorageBucket();
@@ -54,7 +57,9 @@ class _BottomNavState extends State<BottomNav> {
                         Icons.delivery_dining,
                         color: currentTab == 0 ? primary : Colors.grey,
                       ),
-                      Text("Delivery",style: TextStyle(fontSize: 12),),
+                      Text("Delivery",style: TextStyle(fontSize: 12,
+                        color: currentTab == 0 ? primary : Colors.grey,
+                      ),),
                       SizedBox(height: 5,)
                     ],
                   ),
@@ -65,7 +70,7 @@ class _BottomNavState extends State<BottomNav> {
                   minWidth: 40,
                   onPressed: () {
                     setState(() {
-                      currentScreen = Center(child: Text("1"));
+                      currentScreen = DiningScreen();
                       currentTab = 1;
                     });
                   },
@@ -75,10 +80,11 @@ class _BottomNavState extends State<BottomNav> {
                     children: [
                       currentTab == 1 ? bottamSelectedContainer():SizedBox(),
                       Icon(
-                        Icons.receipt_long_outlined,
+                        Icons.restaurant_menu,
                         color: currentTab == 1 ? primary : Colors.grey,
                       ),
-                      Text("History", style: TextStyle(fontSize: 12)),
+                      Text("Dining", style: TextStyle(fontSize: 12,color: currentTab == 1 ? primary : Colors.grey,
+                      )),
                       SizedBox(height: 5,)
                     ],
                   ),
@@ -89,7 +95,7 @@ class _BottomNavState extends State<BottomNav> {
                   minWidth: 40,
                   onPressed: () {
                     setState(() {
-                      currentScreen = Center(child: Text("1"));
+                      currentScreen = MoneyScreen();
                       currentTab = 2;
                     });
                   },
@@ -101,7 +107,9 @@ class _BottomNavState extends State<BottomNav> {
                         Icons.credit_card_outlined,
                         color: currentTab == 2 ? primary : Colors.grey,
                       ),
-                      Text("Money", style: TextStyle(fontSize: 12)),
+                      Text("Money", style: TextStyle(fontSize: 12,
+                        color: currentTab == 2 ? primary : Colors.grey,
+                      )),
                       SizedBox(height: 5,)
                     ],
                   ),

@@ -2,8 +2,6 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zomato_clone/provider/foota_item_count.dart';
-import 'package:zomato_clone/screens/home_screen/home_screen.dart';
-import 'package:zomato_clone/screens/restaurant/restaurant_screen.dart';
 import 'package:zomato_clone/screens/splash_screen/splash_screen.dart';
 
 void main() {
@@ -28,7 +26,7 @@ class ZomatoClone extends StatelessWidget {
         builder: DevicePreview.appBuilder,
         theme: ThemeData(primaryColor: Color(0xfffd3249), fontFamily: 'LexendDeca'),
         debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+        home: SplashScreen(),
       ),
     );
   }

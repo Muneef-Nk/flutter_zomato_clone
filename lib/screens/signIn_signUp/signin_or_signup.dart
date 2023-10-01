@@ -1,5 +1,7 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:pinput/pinput.dart';
 import 'package:zomato_clone/screens/select_country/select_country.dart';
 import 'package:zomato_clone/screens/signIn_signUp/widgets/social_container.dart';
 
@@ -156,7 +158,8 @@ class _SignIn_SignUpState extends State<SignIn_SignUp> {
                                           child: Text(
                                         "Select",
                                         style: TextStyle(
-                                            fontSize: 20, color: Colors.white),
+                                            fontSize: 20,
+                                            color: Colors.white),
                                       )),
                                     ),
                                   ),
@@ -244,7 +247,7 @@ class _SignIn_SignUpState extends State<SignIn_SignUp> {
                     ),
                     Expanded(
                       child: Container(
-                        padding: EdgeInsets.all(5),
+                        // padding: EdgeInsets.all(5),
                         width: 60,
                         height: 50,
                         // color: Colors.red,
@@ -252,23 +255,25 @@ class _SignIn_SignUpState extends State<SignIn_SignUp> {
                             border: Border.all(
                                 width: 1, color: Colors.grey.withOpacity(.5)),
                             borderRadius: BorderRadius.circular(10)),
-                        child: Form(
-                          child: TextFormField(
-                            key: _numberKey,
-                            controller: _numberController,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              //errorText: _validate ? "Value Can't Be Empty" : null,
-                              border: InputBorder.none,
-                              prefixIcon: Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 10, left: 10),
-                                child: Text("+91"),
-                              ),
-                              hintText: "Enter Phone Number",
-                              hintStyle: TextStyle(color: Colors.grey),
-                              prefixIconColor: Colors.black,
+                        child: TextField(
+                          // maxLength: 10,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(10),
+                          ],
+                          key: _numberKey,
+                          controller: _numberController,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            //errorText: _validate ? "Value Can't Be Empty" : null,
+                            border: InputBorder.none,
+                            prefixIcon: Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 14, left: 10),
+                              child: Text("+91"),
                             ),
+                            hintText: "Enter Phone Number",
+                            hintStyle: TextStyle(color: Colors.grey),
+                            prefixIconColor: Colors.black,
                           ),
                         ),
                       ),
@@ -277,8 +282,11 @@ class _SignIn_SignUpState extends State<SignIn_SignUp> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => OTPScreen()));
+                    if (_numberController.length == 10) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => OTPScreen()));
+                    }
+
                     // if (_numberKey.currentState!.validate()) {
                     //   // Scaffold.of(context).showSnackBar()
                     //   print('not valid');
@@ -356,7 +364,8 @@ class _SignIn_SignUpState extends State<SignIn_SignUp> {
                                         children: [
                                           socialContainerBSheet(
                                               context: context,
-                                              icon: "assets/icons/facebook.png",
+                                              icon:
+                                                  "assets/icons/facebook.png",
                                               text: "Continue with Facebook"),
                                           SizedBox(
                                             height: 15,

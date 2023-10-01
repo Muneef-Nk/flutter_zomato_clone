@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 
-import '../model/home_slider.dart';
-
 class RatingContainer extends StatelessWidget {
   const RatingContainer({
-    super.key, required this.index,
+    super.key, required this.index, required this.modelList,
   });
 
   final int index;
+  final List modelList;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin:
-      EdgeInsets.only(right: 10, top: 10),
+      margin: EdgeInsets.only(right: 10, top: 10),
       width: 45,
       height: 25,
       decoration: BoxDecoration(
@@ -25,7 +23,7 @@ class RatingContainer extends StatelessWidget {
         MainAxisAlignment.center,
         children: [
           Text(
-            sliderHome[index].rating,
+            modelList[index].rating,
             style:
             TextStyle(color: Colors.white),
           ),

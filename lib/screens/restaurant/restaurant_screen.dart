@@ -286,6 +286,7 @@ class RestaurantScreen extends StatelessWidget {
                     }),
               ),
               ExpansionTile(
+                initiallyExpanded: true,
                 iconColor: Colors.black,
                 collapsedIconColor: Colors.black,
                 collapsedTextColor: Colors.black,

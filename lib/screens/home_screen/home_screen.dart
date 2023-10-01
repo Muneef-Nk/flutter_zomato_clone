@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zomato_clone/screens/home_screen/widgets/chip_container.dart';
@@ -10,7 +9,11 @@ import 'package:zomato_clone/widgets/rating_container.dart';
 import '../../model/home_slider.dart';
 import '../../model/horizontal_food_slider.dart';
 import '../../utils/constants.dart';
+import '../../widgets/chip_with_label.dart';
+import '../../widgets/chip_with_last_icon.dart';
 import '../../widgets/filter_chip.dart';
+import '../../widgets/profile.dart';
+import '../../widgets/show_language_bottom_sheet.dart';
 import '../../widgets/show_location_bottomsheet.dart';
 import '../restaurant/restaurant_screen.dart';
 import '../search/search_screen.dart';
@@ -75,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                      // showModalBottomSheetLanguage(context);
+                       showModalBottomSheetLanguage(context);
                     },
                     child: Container(
                       width: 40,
@@ -93,9 +96,7 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  CircleAvatar(
-                    backgroundColor: Colors.red,
-                  ),
+                  Profile(),
                   SizedBox(
                     width: 10,
                   )
@@ -435,27 +436,12 @@ class HomeScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       FirstChip(label: "Sort"),
-                      ChipContainer(label: "Nearest"),
-                      ChipContainer(label: "Favourites"),
-                      ChipContainer(label: "Award winners"),
-                      ChipContainer(label: "Rating 4.0+"),
-                      ChipContainer(label: "Pure Veg"),
-                      Container(
-                        margin: EdgeInsets.only(right: 6),
-                        padding: EdgeInsets.symmetric(horizontal: 5),
-                        height: 35,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey.shade400),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Row(
-                          children: [
-                            Text("Cuisines",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 13)),
-                            Icon(Icons.arrow_drop_down),
-                          ],
-                        ),
-                      ),
+                      ChipWithLabel(name: "Nearest"),
+                      ChipWithLabel(name: "Favourites"),
+                      ChipWithLabel(name: "Pure Veg"),
+                      ChipWithLabel(name: "Rating 4.0+"),
+                      ChipContainer(label: "ward winners"),
+                      ChipLabelLastIcon(name: "Cuisines",)
                     ],
                   ),
                 ),
@@ -562,7 +548,7 @@ class HomeScreen extends StatelessWidget {
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
-                                    RatingContainer(index: ConIndex,)
+                                    RatingContainer(index: ConIndex, modelList: sliderHome,)
                                   ],
                                 ),
                                 Padding(
@@ -689,7 +675,7 @@ class HomeScreen extends StatelessWidget {
                                           padding: const EdgeInsets.only(left: 8, top: 8),
                                           child: SizedBox(width: 100,child: Text(sliderHome[index].hotelName, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)),
                                         ),
-                                        RatingContainer(index: index)
+                                        RatingContainer(index: index, modelList: sliderHome,)
                                       ],
                                     ),
                                     Padding(
