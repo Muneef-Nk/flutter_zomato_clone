@@ -1,5 +1,7 @@
 # zomato_clone
 
+some screenshots
+
 <img src="https://github.com/Muneef-Nk/flutter_zomato_clone/assets/92105703/5b1dea53-be79-426b-90db-c9dbf0bc2830" width="250" height="400"/>
 
 <img src="https://github.com/Muneef-Nk/flutter_zomato_clone/assets/92105703/7c23e71e-9d51-4d33-9fa9-c0546810cf43" width="250" height="400"/>
