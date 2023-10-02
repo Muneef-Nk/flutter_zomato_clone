@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:zomato_clone/screens/home_screen/widgets/chip_container.dart';
 import 'package:zomato_clone/screens/home_screen/widgets/offer_text.dart';
 import 'package:zomato_clone/screens/home_screen/widgets/time_km_row.dart';
@@ -19,13 +20,32 @@ import '../restaurant/restaurant_screen.dart';
 import '../search/search_screen.dart';
 import 'widgets/exploreContainer.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   List<String> images = [
     "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
     "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
   ];
+
+
+  bool isShimmerLoading=false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    Future.delayed(Duration(seconds: 4),(){
+      setState(() {
+        isShimmerLoading=true;
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -185,7 +205,8 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: Column(
+            child:isShimmerLoading?
+            Column(
               children: [
                 // first container for events or offers
                 Container(
@@ -729,10 +750,156 @@ class HomeScreen extends StatelessWidget {
                 )
 
               ],
-            ),
-          ),
+            )
+                :shimmerLoading(),
+          )
+
         ],
       ),
     );
   }
+
+
+  Widget shimmerLoading(){
+    return Shimmer.fromColors(baseColor: Colors.grey.withOpacity(.3), highlightColor: Colors.white,
+    child:  Column(
+      children: [
+        Container(
+          padding: EdgeInsets.all(10),
+          width: MediaQuery.of(context).size.width * 0.92,
+          height: 120,
+          margin: EdgeInsets.symmetric(vertical: 10),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color(primaryDeep.value),
+                    Color(primaryLight.value),
+                  ])),
+          child: Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "PLACE YOUR FIRST ORDER & GET",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    "Up to 60% OFF +",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "Free delivery",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 7,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "Order now to avail the benefits",
+                        style: TextStyle(
+                            color: Colors.white, fontSize: 12),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Container(
+                        width: 15,
+                        height: 15,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle),
+                        child: Icon(
+                          Icons.arrow_forward,
+                          color: Colors.black,
+                          size: 11,
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+              Image.asset(
+                "assets/images/himage.png",
+                width: 100,
+              )
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+
+        //explore
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: EdgeInsets.all(10),
+              width: MediaQuery.of(context).size.width*0.44,
+              height: 80,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(width: 10,),
+            Container(
+              padding: EdgeInsets.all(10),
+              width: MediaQuery.of(context).size.width*0.44,
+              height: 80,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 10),
+        Container(
+          height: 270,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: horizontalImagesRow1.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(10),
+                      width: 90,
+                      height: 115,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(10),
+                      width: 90,
+                      height: 115,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle),
+                    ),
+                  ],
+                );
+              }),
+        ),
+
+
+      ],
+    ),
+    );
+  }
+
 }

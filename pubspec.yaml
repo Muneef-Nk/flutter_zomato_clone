@@ -46,6 +46,7 @@ dependencies:
   page_view_dot_indicator: ^2.3.0
   provider: ^6.0.5
   youtube_player_flutter: ^8.1.2
+  shimmer: ^3.0.0
 
 
 

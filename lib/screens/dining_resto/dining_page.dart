@@ -1,13 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:zomato_clone/model/home_slider.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../model/dining_resto_model.dart';
 import '../../widgets/chip_with_label.dart';
 import '../../widgets/filter_chip.dart';
 
-class DiningResto extends StatelessWidget {
+class DiningResto extends StatefulWidget {
   const DiningResto({super.key, required this.noOfResto, required this.name, required this.image});
 
   final int noOfResto;
@@ -15,9 +14,31 @@ class DiningResto extends StatelessWidget {
   final String image;
 
   @override
+  State<DiningResto> createState() => _DiningRestoState();
+}
+
+class _DiningRestoState extends State<DiningResto> {
+
+  bool isLoading=false;
+
+
+  bool isShimmerLoading=false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    Future.delayed(Duration(seconds: 3),(){
+      setState(() {
+        isShimmerLoading=true;
+      });
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
+      body:isShimmerLoading? CustomScrollView(
         slivers: [
           SliverAppBar(
             backgroundColor: Color(0xff1c1c1c),
@@ -26,8 +47,8 @@ class DiningResto extends StatelessWidget {
             pinned: true,
             expandedHeight: 220,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.network(image, fit: BoxFit.cover,),
-              title: Text(name, style: TextStyle(color: Colors.white),),
+              background: Image.network(widget.image, fit: BoxFit.cover,),
+              title: Text(widget.name, style: TextStyle(color: Colors.white),),
               centerTitle: true,
             ),
             actions: [
@@ -150,6 +171,87 @@ class DiningResto extends StatelessWidget {
                 ]),
           )
         ],
+      ):shimmerLoading(),
+    );
+  }
+
+  Widget shimmerLoading(){
+    return Shimmer.fromColors(baseColor: Colors.grey.withOpacity(.3),
+        highlightColor: Colors.white,
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 200,
+                color: Colors.white,
+              ),
+              SizedBox(height: 20,),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(5),
+                      width: 100,
+                      height: 40,
+                      color: Colors.white,
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(5),
+                      width: 100,
+                      height: 40,
+                      color: Colors.white,
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(5),
+                      width: 100,
+                      height: 40,
+                      color: Colors.white,
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(5),
+                      width: 100,
+                      height: 40,
+                      color: Colors.white,
+                    ),
+
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(10),
+                width: double.infinity,
+                height: 200,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(10),
+                width: double.infinity,
+                height: 200,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(10),
+                width: double.infinity,
+                height: 200,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
