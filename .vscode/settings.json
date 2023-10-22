@@ -1,0 +1,11 @@
+{
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+    "editor.language.colorizedBracketPairs": [],
+    "editor.guides.indentation": false,
+    "editor.guides.highlightActiveIndentation": true,
+    "editor.foldingStrategy": "auto",
+    "editor.detectIndentation": true,
+    "editor.autoIndent": "full",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active"
+}
