@@ -1,7 +1,7 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:zomato_clone/screens/profileScreen/widgets/profil_small_container.dart';
-import 'package:zomato_clone/utils/constants.dart';
+import 'package:zomato_clone/utils/color_constants.dart';
 import 'package:zomato_clone/widgets/profile.dart';
 
 import '../../model/profile_model.dart';

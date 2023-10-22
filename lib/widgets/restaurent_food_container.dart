@@ -1,7 +1,7 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:zomato_clone/utils/constants.dart';
+import 'package:zomato_clone/utils/color_constants.dart';
 import 'package:zomato_clone/widgets/rating_stars.dart';
 
 import '../model/restaurent_recommeded_model.dart';

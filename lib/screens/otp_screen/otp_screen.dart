@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
-import 'package:zomato_clone/utils/constants.dart';
+import 'package:zomato_clone/utils/color_constants.dart';
 
 import '../location_perlmision/locaton_permision.dart';
 

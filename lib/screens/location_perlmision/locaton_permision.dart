@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:zomato_clone/bottomNav.dart';
-import 'package:zomato_clone/utils/constants.dart';
+import 'package:zomato_clone/utils/color_constants.dart';
 
 class LocationPermission extends StatelessWidget {
   const LocationPermission({super.key});

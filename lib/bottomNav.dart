@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zomato_clone/screens/dining/dining_page.dart';
 import 'package:zomato_clone/screens/home_screen/home_screen.dart';
 import 'package:zomato_clone/screens/money/money_page.dart';
-import 'package:zomato_clone/utils/constants.dart';
+import 'package:zomato_clone/utils/color_constants.dart';
 import 'package:zomato_clone/widgets/bottomSelectedContainer.dart';
 
 

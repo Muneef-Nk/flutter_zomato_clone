@@ -5,7 +5,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../model/dining_horiz_model.dart';
 import '../../model/dining_must_try.dart';
 import '../../model/popular_model_dininig.dart';
-import '../../utils/constants.dart';
+import '../../utils/color_constants.dart';
 import '../../widgets/chip_with_label.dart';
 import '../../widgets/chip_with_last_icon.dart';
 import '../../widgets/filter_chip.dart';

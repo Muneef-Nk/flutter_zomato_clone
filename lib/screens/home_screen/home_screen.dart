@@ -9,7 +9,7 @@ import 'package:zomato_clone/widgets/rating_container.dart';
 
 import '../../model/home_slider.dart';
 import '../../model/horizontal_food_slider.dart';
-import '../../utils/constants.dart';
+import '../../utils/color_constants.dart';
 import '../../widgets/chip_with_label.dart';
 import '../../widgets/chip_with_last_icon.dart';
 import '../../widgets/filter_chip.dart';

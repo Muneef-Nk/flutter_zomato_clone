@@ -1,11 +1,12 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pinput/pinput.dart';
 import 'package:zomato_clone/screens/select_country/select_country.dart';
 import 'package:zomato_clone/screens/signIn_signUp/widgets/social_container.dart';
 
-import '../../utils/constants.dart';
+import '../../utils/color_constants.dart';
 import '../../widgets/social_container.dart';
 import '../location_perlmision/locaton_permision.dart';
 import '../otp_screen/otp_screen.dart';
@@ -226,20 +227,39 @@ class _SignIn_SignUpState extends State<SignIn_SignUp> {
                 // DividerCenterText(text: "Log in or sign up",),
                 Row(
                   children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => SelectCountry()));
-                      },
-                      child: Container(
-                        width: 60,
-                        height: 50,
-                        // color: Colors.red,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1, color: Colors.grey.withOpacity(.5)),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Icon(Icons.arrow_drop_down),
+                    Container(
+                      width: 100,
+                      height: 50,
+                      // color: Colors.red,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              width: 1, color: Colors.grey.withOpacity(.5)),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: CountryCodePicker(
+                        searchDecoration: InputDecoration(
+
+                          hintText: "Search Country name or code",
+                          hintStyle: TextStyle(fontSize: 12),
+                          border: InputBorder.none,
+                          fillColor: Colors.grey[200],
+                            filled: true,
+                          // enabledBorder: OutlineInputBorder(
+                          //   borderRadius: BorderRadius.circular(15)
+                          // )
+                        ),
+                        showFlag: true,
+
+                        onChanged: print,
+                        // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
+                        initialSelection: 'IT',
+                        favorite: ['+376','+91'],
+                        // optional. Shows only country name and flag
+                        showCountryOnly: false,
+                        // optional. Shows only country name and flag when popup is closed.
+                        showOnlyCountryWhenClosed: false,
+                        // optional. aligns the flag and the Text left
+                        // alignLeft: true,
+
                       ),
                     ),
                     SizedBox(
@@ -247,7 +267,7 @@ class _SignIn_SignUpState extends State<SignIn_SignUp> {
                     ),
                     Expanded(
                       child: Container(
-                        // padding: EdgeInsets.all(5),
+                        padding: EdgeInsets.only(left: 10),
                         width: 60,
                         height: 50,
                         // color: Colors.red,
@@ -266,11 +286,6 @@ class _SignIn_SignUpState extends State<SignIn_SignUp> {
                           decoration: InputDecoration(
                             //errorText: _validate ? "Value Can't Be Empty" : null,
                             border: InputBorder.none,
-                            prefixIcon: Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 14, left: 10),
-                              child: Text("+91"),
-                            ),
                             hintText: "Enter Phone Number",
                             hintStyle: TextStyle(color: Colors.grey),
                             prefixIconColor: Colors.black,

@@ -1,13 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:zomato_clone/screens/restaurant/widgets/chip_container_with_icon.dart';
 
 import '../../model/restaruntSliderModel.dart';
 import '../../model/restaurent_recommeded_model.dart';
-import '../../provider/foota_item_count.dart';
-import '../../utils/constants.dart';
+import '../../provider/food_item_count.dart';
+import '../../utils/color_constants.dart';
 import '../../widgets/bestSeller_mustTry_container.dart';
 import '../../widgets/filter_chip.dart';
 import '../../widgets/rating_stars.dart';
@@ -82,9 +83,15 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
             SizedBox(
               width: 10,
             ),
-            Image.asset(
-              "assets/icons/shareblack.png",
-              width: 25,
+            GestureDetector(
+              onTap: (){
+                print("u clicked");
+                Share.share('check out my website https://example.com');
+              },
+              child: Image.asset(
+                "assets/icons/shareblack.png",
+                width: 25,
+              ),
             ),
             SizedBox(
               width: 10,
@@ -449,23 +456,28 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                                 ),
                                                 Row(
                                                   children: [
-                                                    Container(
-                                                      width: 30,
-                                                      height: 30,
-                                                      decoration: BoxDecoration(
-                                                          shape:
-                                                              BoxShape.circle,
-                                                          color: Colors.white,
-                                                          border: Border.all(
-                                                              color: Colors.grey
-                                                                  .shade300)),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(3),
-                                                        child: Image.asset(
-                                                          "assets/icons/share.png",
-                                                          width: 10,
+                                                    GestureDetector(
+                                                      onTap: (){
+                                                        Share.share('check out my website https://example.com');
+                                                      },
+                                                      child: Container(
+                                                        width: 30,
+                                                        height: 30,
+                                                        decoration: BoxDecoration(
+                                                            shape:
+                                                                BoxShape.circle,
+                                                            color: Colors.white,
+                                                            border: Border.all(
+                                                                color: Colors.grey
+                                                                    .shade300)),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(3),
+                                                          child: Image.asset(
+                                                            "assets/icons/share.png",
+                                                            width: 10,
+                                                          ),
                                                         ),
                                                       ),
                                                     ),

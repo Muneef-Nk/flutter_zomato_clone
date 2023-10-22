@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:zomato_clone/utils/constants.dart';
+import 'package:zomato_clone/utils/color_constants.dart';
 Future<dynamic> showLocationModalBottomSheet(BuildContext context) {
   return showModalBottomSheet(
       isScrollControlled: true,

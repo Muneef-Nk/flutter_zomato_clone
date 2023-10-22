@@ -3,7 +3,7 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../utils/constants.dart';
+import '../../utils/color_constants.dart';
 import '../../widgets/profile.dart';
 import '../../widgets/show_location_bottomsheet.dart';
 import '../search/search_screen.dart';
